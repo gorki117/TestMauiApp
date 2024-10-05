@@ -1,0 +1,43 @@
+﻿@page "/patika"
+
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using Models
+@using Services
+@code {
+    MarkerService markerService = new MarkerService();
+}
+
+
+<h3>Patika választás</h3>
+<br />
+<p>Kérem válasszon patikát.</p>
+<br />
+<p> A kiválasztott patika:  @markerService.SelectedPoint</p>
+<br />
+<p> Jelenlegi helyzet:  @markerService.ActalLocation</p>
+<br />
+<TelerikButton OnClick="@markerService.GetCachedLocation">Aktális tartozkodási hely lekérdezése</TelerikButton>
+<TelerikMap Center="@markerService.Center" Zoom="@markerService.Zoom" OnMarkerClick="@markerService.OnMarkerClick" Width="350" Height="800">
+    <MapLayers>
+        <MapLayer Type="@MapLayersType.Marker"
+                  Data="@markerService.MarkerData1"
+                  LocationField="@nameof(MarkerModel.LatLng)"
+                  TitleField="@nameof(MarkerModel.Title)">
+        </MapLayer>
+
+        <MapLayer Type="@MapLayersType.Tile"
+                  Attribution="@markerService.Attribution"
+                  Subdomains="@markerService.Subdomains"
+                  UrlTemplate="@markerService.UrlTemplate">
+        </MapLayer>
+
+    </MapLayers>
+</TelerikMap>
+
+   
+
+   
+
+
+

@@ -1,0 +1,30 @@
+﻿@page "/couppon"
+
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using Models
+@using Services
+
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using Models
+@using Services
+
+<h3>Kuponok</h3>
+
+@code {
+    Random rnd = new Random();
+    string name = String.Empty;
+}
+
+
+
+    <TelerikStackLayout Orientation="StackLayoutOrientation.Vertical" HorizontalAlign="StackLayoutHorizontalAlign.Center" Spacing="30px">
+
+    @for (int z = 0; z < rnd.Next(5, 20); z++)
+    {
+                <div class="stackImage">
+            <img src="Cuppon/coupon@(rnd.Next(1,3)).png" width="348" height="226" />
+                </div>
+    }
+    </TelerikStackLayout>

@@ -1,0 +1,45 @@
+﻿@inherits LayoutComponentBase
+@layout TelerikLayout
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using Telerik.FontIcons
+@using TestMauiApp.Models
+@using TestMauiApp.Services
+
+<link href="https://blazor.cdn.telerik.com/blazor/6.2.0/kendo-font-icons/font-icons.css" rel="stylesheet" type="text/css" />
+<style>
+    
+</style>
+<div class="page">
+
+   
+    <main>
+     
+        <article class="content px-4">
+            @Body
+        </article>
+        
+    </main>
+   
+
+
+    <div Class ="fixed-bottom bg-dark  ">
+        <TelerikMenu Data="@menuservice.MenuData" Class=" bg-dark justify-content-center custom-menu-styles"></TelerikMenu>
+    </div>
+
+    @code {
+     
+        MenuService menuservice = new MenuService();
+        protected override void OnInitialized()
+            {
+                    menuservice.GenerateMenuData();
+            }
+
+  
+    }
+
+    
+
+
+
+</div>

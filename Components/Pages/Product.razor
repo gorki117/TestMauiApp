@@ -1,0 +1,43 @@
+﻿@page "/product"
+
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using Models
+@using Services
+
+<h3>Akciós termékek</h3>
+
+<TelerikTextBox @bind-Value="@name"></TelerikTextBox>
+
+@if(name.Length > 0)
+{
+    <p> A kereset termék nem található</p>
+}
+<br />
+@code {
+    Random rnd = new Random();
+    string name = String.Empty;
+}
+
+@for (int z = 0; z < rnd.Next(3, 6); z++)
+{
+
+    <TelerikStackLayout Orientation="StackLayoutOrientation.Vertical" HorizontalAlign="StackLayoutHorizontalAlign.Center">
+        <div class="red">
+            <h4>Termékcsoport @(rnd.Next(1, 6))</h4>
+        </div>
+        @for (int i = 0; i < rnd.Next(2, 5); i++)
+        {
+            <TelerikStackLayout Orientation="StackLayoutOrientation.Horizontal" Spacing="20px" HorizontalAlign="StackLayoutHorizontalAlign.Center">
+                <div class="stackImage">
+                    <img src="Products/product1.png" width="160" height="344" />
+                </div>
+                <div class="stackImage">
+                    <img src="Products/product2.png" width="160" height="344" />
+                </div>
+
+            </TelerikStackLayout>
+        }
+
+    </TelerikStackLayout>
+}

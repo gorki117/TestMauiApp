@@ -1,0 +1,94 @@
+﻿@page "/"
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using TestMauiApp.Models
+
+
+<p>Kuponok</p>
+<TelerikCarousel Data="@CarouselData"
+                 Width="348px" Height="240px">
+    <Template>
+        <div class="image-with-text">
+ 
+            <table>
+                <tbody>
+                    <tr>
+                        <td><img src="Cuppon/coupon@(context.ImageID).png"  width="348" height="226" /></td>
+                         
+                        
+                    </tr>
+                </tbody>
+            </table>
+    
+        </div>
+    </Template>
+</TelerikCarousel>
+
+<style>
+    /* center the Carousel horizontally */
+    /* k-scrollview is the default component class */
+    .k-scrollview {
+        margin: 0 auto;
+        border:0;
+    }
+
+    /* enable absolute positioning inside the Carousel template */
+    .image-with-text {
+        position: relative;
+        background-color:black
+    }
+
+    /* style the overlay text inside the Carousel */
+    .image-with-text > p {
+        position: absolute;
+        top: 1rem;
+        left: 1.6rem;
+        color: forestgreen;
+        margin: 0;
+        font-style: italic;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, .8);
+    }
+
+
+</style>
+
+<p>Akciók</p>
+@code {
+    Random rnd = new Random();
+    public List<CarouselModel> CarouselData { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        CarouselData = Enumerable.Range(1, 7).Select(x => new CarouselModel
+        {
+                ImageID = rnd.Next(1, 3)
+        }).ToList();
+
+        return base.OnInitializedAsync();
+    }
+
+   
+}
+
+
+
+ @for (int z = 0; z < rnd.Next(1,6); z++)
+    {  
+
+    <TelerikStackLayout Orientation="StackLayoutOrientation.Vertical"  HorizontalAlign="StackLayoutHorizontalAlign.Center">
+   
+     @for (int i = 0; i < rnd.Next(2,5); i++)
+    {
+            <TelerikStackLayout Orientation="StackLayoutOrientation.Horizontal" Spacing="20px" HorizontalAlign="StackLayoutHorizontalAlign.Center">
+            <div class="stackImage">
+                <img src="Products/product1.png" width="160" height="344" />
+            </div>
+                <div class="stackImage">
+                    <img src="Products/product2.png" width="160" height="344" />
+            </div>
+      
+    </TelerikStackLayout>
+    }
+   
+</TelerikStackLayout>
+    }
